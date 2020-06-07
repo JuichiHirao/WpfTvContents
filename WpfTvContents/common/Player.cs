@@ -20,10 +20,6 @@ namespace WpfTvContents.common
 
             listPlayer.Add(new PlayerInfo("WMP", "wmplayer.exe"));
             listPlayer.Add(new PlayerInfo("GOM", "GOM.exe"));
-
-            StoreList.Add(@"F:\JH-STORAGE\SHARE-TVCONTENTS\SHARE1");
-            StoreList.Add(@"F:\JH-STORAGE\SHARE-TVCONTENTS\UTATANE");
-            StoreList.Add(@"F:\JH-STORAGE\SHARE0\HDTV");
         }
         public List<PlayerInfo> GetPlayers()
         {
@@ -47,15 +43,9 @@ namespace WpfTvContents.common
                           where player.Name.ToUpper() == playerName.ToUpper()
                           select player;
 
-            foreach (string store in StoreList)
-            {
-                 string name = Path.Combine(myData.Path, myData.Name.Replace(" − ", " － "));
-                if (File.Exists(name))
-                {
-                    executePathname = name;
-                    break;
-                }
-            }
+            string name = Path.Combine(myData.Path, myData.Name.Replace(" − ", " － "));
+            if (File.Exists(name))
+                executePathname = name;
 
             if (executePathname.Length <= 0)
                 return;
