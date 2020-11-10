@@ -17,6 +17,8 @@ namespace WpfTvContents.data
         public string Source { get; set; }
         public long Duration { get; set; }
 
+        public string Time { get; set; }
+
         public string VideoInfo { get; set; }
 
         public string Comment { get; set; }

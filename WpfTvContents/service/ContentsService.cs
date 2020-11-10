@@ -25,9 +25,10 @@ namespace WpfTvContents.service
             string queryString
                         = "SELECT f.id"
                         + "    , f.contents_id, f.detail_id, f.store_id, f.label"
-                        + "    , f.name, f.source, f.duration, f.video_info "
-                        + "    , f.comment, f.size, f.priority_num, f.file_date  "
-                        + "    , f.quality, f.rating1, f.rating2, f.remark  "
+                        + "    , f.name, f.source, f.duration, f.time "
+                        + "    , f.video_info, f.comment, f.size, f.priority_num  "
+                        + "    , f.file_date, f.quality, f.rating1, f.rating2  "
+                        + "    , f.remark  "
                         + "    , f.created_at, f.updated_at, d.path "
                         + "  FROM tv.file as f LEFT JOIN tv.real_dir as d "
                         + "    ON f.store_id = d.id  "
@@ -52,26 +53,28 @@ namespace WpfTvContents.service
                     {
                         ContentsData data = new ContentsData();
 
-                        data.Id = MySqlDbExportCommon.GetDbInt(reader, 0);
-                        data.ContentsId = MySqlDbExportCommon.GetDbInt(reader, 1);
-                        data.DetailId = MySqlDbExportCommon.GetDbInt(reader, 2);
-                        data.StoreId = MySqlDbExportCommon.GetDbInt(reader, 3);
-                        data.Label = MySqlDbExportCommon.GetDbString(reader, 4);
-                        data.Name = MySqlDbExportCommon.GetDbString(reader, 5);
-                        data.Source = MySqlDbExportCommon.GetDbString(reader, 6);
-                        data.Duration = MySqlDbExportCommon.GetDbInt(reader, 7);
-                        data.VideoInfo = MySqlDbExportCommon.GetDbString(reader, 8);
-                        data.Comment = MySqlDbExportCommon.GetDbString(reader, 9);
-                        data.Size = MySqlDbExportCommon.GetLong(reader, 10);
-                        data.PriorityNum = MySqlDbExportCommon.GetDbInt(reader, 11);
-                        data.FileDate = MySqlDbExportCommon.GetDbDateTime(reader, 12);
-                        data.Quality = MySqlDbExportCommon.GetDbInt(reader, 13);
-                        data.Rating1 = MySqlDbExportCommon.GetDbInt(reader, 14);
-                        data.Rating2 = MySqlDbExportCommon.GetDbInt(reader, 15);
-                        data.Remark = MySqlDbExportCommon.GetDbString(reader, 16);
-                        data.CreatedAt = MySqlDbExportCommon.GetDbDateTime(reader, 17);
-                        data.UpdatedAt = MySqlDbExportCommon.GetDbDateTime(reader, 18);
-                        data.Path = MySqlDbExportCommon.GetDbString(reader, 19);
+                        int colIdx = 0;
+                        data.Id = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.ContentsId = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.DetailId = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.StoreId = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.Label = MySqlDbExportCommon.GetDbString(reader, colIdx++);
+                        data.Name = MySqlDbExportCommon.GetDbString(reader, colIdx++);
+                        data.Source = MySqlDbExportCommon.GetDbString(reader, colIdx++);
+                        data.Duration = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.Time = MySqlDbExportCommon.GetDbString(reader, colIdx++);
+                        data.VideoInfo = MySqlDbExportCommon.GetDbString(reader, colIdx++);
+                        data.Comment = MySqlDbExportCommon.GetDbString(reader, colIdx++);
+                        data.Size = MySqlDbExportCommon.GetLong(reader, colIdx++);
+                        data.PriorityNum = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.FileDate = MySqlDbExportCommon.GetDbDateTime(reader, colIdx++);
+                        data.Quality = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.Rating1 = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.Rating2 = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.Remark = MySqlDbExportCommon.GetDbString(reader, colIdx++);
+                        data.CreatedAt = MySqlDbExportCommon.GetDbDateTime(reader, colIdx++);
+                        data.UpdatedAt = MySqlDbExportCommon.GetDbDateTime(reader, colIdx++);
+                        data.Path = MySqlDbExportCommon.GetDbString(reader, colIdx++);
 
                         listData.Add(data);
                     }

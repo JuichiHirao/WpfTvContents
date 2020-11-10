@@ -24,6 +24,22 @@ namespace WpfTvContents.common
             }
             return myData;
         }
+
+        public static bool GetDbBool(MySqlDataReader myReader, int myColumnNo)
+        {
+            bool myData = false;
+            try
+            {
+                if (!myReader.IsDBNull(myColumnNo))
+                    myData = myReader.GetBoolean(myColumnNo);
+            }
+            catch (Exception)
+            {
+                myData = false;
+            }
+            return myData;
+        }
+
         public static int GetDbInt(MySqlDataReader myReader, int myColumnNo)
         {
             int myData = 0;

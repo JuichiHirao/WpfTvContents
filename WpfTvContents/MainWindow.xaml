@@ -41,19 +41,35 @@
                 <TextBox Name="txtStatusBar" TextWrapping="Wrap" Background="{Binding Background}" />
             </StatusBarItem>
         </StatusBar>
-        <Grid>
+        <Grid Name="GridMain">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="1000" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <Grid>
+            <Grid Grid.ColumnSpan="3">
                 <WrapPanel Margin="5,3,5,3">
                     <TextBox Name="TxtMainSearch" Margin="5,3,5,3" Width="500" FontSize="18" />
                     <Button Name="BtnMainSearch" Content="検索" Width="60" Margin="5,3,5,3" Grid.Column="1" Click="BtnMainSearch_Click" />
                 </WrapPanel>
             </Grid>
-            <Grid Name="lgridItemDetail" Grid.Row="2">
+            <Grid VerticalAlignment="Top" Grid.Row="1">
+                <WrapPanel Orientation="Vertical">
+                    <Button Name="BtnRecoredSearchClear" Content="CLR" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchClear_Click" />
+                    <Button Name="BtnRecoredSearchKpopBank" Content="中心" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchKpopBank_Click" />
+                    <Button Name="BtnRecoredSearchKpopCore" Content="中心" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchKpopCore_Click" />
+                    <Button Name="BtnRecoredSearchSbs" Content="SBS" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchSbs_Click" />
+                    <Button Name="BtnRecoredSearch女" Content="女" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchVenus_Click" />
+                    <Button Name="BtnRecoredSearchSw" Content="SwA" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchSw_Click" />
+                    <Button Name="BtnRecoredSearchGv" Content="グラ" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchGv_Click" />
+                </WrapPanel>
+            </Grid>
+            <Grid Name="lgridItemDetail" Grid.ColumnSpan="3" Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="80" />
@@ -68,47 +84,103 @@
                           Margin="5,3,3,5" Grid.Column="1" FontSize="24" SelectionChanged="OnChangedRating2" />
                 <TextBox Name="txtLargeComment" Margin="5,3,3,5" VerticalAlignment="Center" FontSize="24" Grid.Column="2" LostFocus="OnEditEndComment" />
             </Grid>
-            <DataGrid HeadersVisibility="Row"  Name="GridMainContents" AutoGenerateColumns="False"
+            <Grid Grid.Column="1" Grid.Row="1">
+                <DataGrid HeadersVisibility="Row"  Name="GridMainRecorded" AutoGenerateColumns="False"
                           Height="Auto" Margin="5,1,5,5" Panel.ZIndex="1" Opacity="0.6"
                           HorizontalAlignment="Left" VerticalAlignment="Top" GridLinesVisibility="Horizontal"
                           CanUserAddRows="False" CanUserDeleteRows="False"
                           Grid.Row="1"
                           SelectionChanged="GridMainContents_SelectionChanged" MouseDoubleClick="GridMainContents_MouseDoubleClick">
-                <!-- SelectionChanged="dgridMovieFilesItem_SelectionChanged" PreviewKeyDown="OnContentsDataGridKeyDown" 
+                    <!-- SelectionChanged="dgridMovieFilesItem_SelectionChanged" PreviewKeyDown="OnContentsDataGridKeyDown" 
                           MouseDoubleClick="dgridMovieFilesItem_MouseDoubleClick" ContextMenuOpening="dgridContentsItem_ContextMenuOpening" > -->
-                <DataGrid.Resources>
-                    <SolidColorBrush x:Key="SelectionColorKey" Color="Blue"/>
-                    <Style TargetType="DataGrid">
-                        <Style.Resources>
-                            <!-- Background of selected item when focussed -->
-                            <!--<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="DodgerBlue" />-->
-                            <!-- Background of selected item when not focussed InactiveSelectionHighlightBrushKey -->
-                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="DodgerBlue" />
-                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White" />
-                        </Style.Resources>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Name">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Name="MainColName" Text="{Binding Path=Name}" TextWrapping="Wrap" TextAlignment="Left" FontSize="18" Grid.ColumnSpan="2" />
-                                    <TextBlock Name="MainColFileDate" Text="{Binding Path=FileDate, StringFormat='yyyy/MM/dd'}" HorizontalAlignment="Right" FontSize="10" Grid.Column="1" Grid.Row="1" />
-                                </Grid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="SelectionColorKey" Color="Blue"/>
+                        <Style TargetType="DataGrid">
+                            <Style.Resources>
+                                <!-- Background of selected item when focussed -->
+                                <!--<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="DodgerBlue" />-->
+                                <!-- Background of selected item when not focussed InactiveSelectionHighlightBrushKey -->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="DodgerBlue" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White" />
+                            </Style.Resources>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Name">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition MaxWidth="140" Width="140" />
+                                            <ColumnDefinition MaxWidth="50" Width="50" />
+                                            <ColumnDefinition MaxWidth="50" Width="50" />
+                                            <ColumnDefinition MaxWidth="740" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Name="MainColOnAirDate" Text="{Binding Path=OnAirDate, StringFormat='yyyy/MM/dd'}" HorizontalAlignment="Center" FontSize="24" />
+                                        <TextBlock Name="MainColChannelNo" Text="{Binding Path=ChannelNo}" TextAlignment="Left" FontSize="18" Grid.Column="1" />
+                                        <TextBlock Name="MainColChannelSeq" Text="{Binding Path=ChannelSeq}" TextAlignment="Left" FontSize="18" Grid.Column="2" />
+                                        <TextBlock Name="MainColProgramName" Text="{Binding Path=ProgramName}" TextWrapping="NoWrap"  TextAlignment="Left" FontSize="18" Grid.ColumnSpan="2" Grid.Column="3" />
+                                        <TextBlock Name="MainColRipStatus" Text="{Binding Path=RipStatus}" TextAlignment="Left" FontSize="14" Grid.Row="1" />
+                                        <TextBlock Name="MainColDetail" Text="{Binding Path=Detail}" TextWrapping="Wrap" TextAlignment="Left" MaxWidth="980" FontSize="18" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" />
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Name="GridColumn1" Grid.Column="2" Grid.Row="1">
+                <DataGrid HeadersVisibility="Row"  Name="GridMainContents" AutoGenerateColumns="False"
+                          Height="Auto" Margin="5,1,5,5" Panel.ZIndex="1" Opacity="0.6"
+                          HorizontalAlignment="Left" VerticalAlignment="Top" GridLinesVisibility="Horizontal"
+                          CanUserAddRows="False" CanUserDeleteRows="False"
+                          Grid.Row="1"
+                          SelectionChanged="GridMainContents_SelectionChanged" MouseDoubleClick="GridMainContents_MouseDoubleClick">
+                    <!-- SelectionChanged="dgridMovieFilesItem_SelectionChanged" PreviewKeyDown="OnContentsDataGridKeyDown" 
+                          MouseDoubleClick="dgridMovieFilesItem_MouseDoubleClick" ContextMenuOpening="dgridContentsItem_ContextMenuOpening" > -->
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="SelectionColorKey" Color="Blue"/>
+                        <Style TargetType="DataGrid">
+                            <Style.Resources>
+                                <!-- Background of selected item when focussed -->
+                                <!--<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="DodgerBlue" />-->
+                                <!-- Background of selected item when not focussed InactiveSelectionHighlightBrushKey -->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="DodgerBlue" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White" />
+                            </Style.Resources>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Name">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Name="MainColName" Text="{Binding Path=Name}" TextWrapping="Wrap" TextAlignment="Left" FontSize="18" Grid.ColumnSpan="4" />
+                                        <TextBlock Text="{Binding Path=Rating1}" Grid.Column="0" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Path=Rating2}" Grid.Column="1" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Path=Time}" Grid.Column="2" Grid.Row="1" />
+                                        <TextBlock Name="MainColFileDate" Text="{Binding Path=FileDate, StringFormat='yyyy/MM/dd'}" HorizontalAlignment="Right" FontSize="10" Grid.Column="3" Grid.Row="1" />
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>

@@ -84,10 +84,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="collection\RecordedCollection.cs" />
     <Compile Include="common\CommonClass.cs" />
     <Compile Include="common\MySqlDbExportCommon.cs" />
     <Compile Include="common\Player.cs" />
+    <Compile Include="data\RecordedData.cs" />
     <Compile Include="service\ContentsService.cs" />
+    <Compile Include="service\RecordedService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
