@@ -140,6 +140,16 @@ namespace WpfTvContents
             GridMainRecorded.Width = 1000;
         }
 
+        private void BtnRecoredSearchKayouPop_Click(object sender, RoutedEventArgs e)
+        {
+            ColViewRecorded.ColViewListData.Filter = null;
+            ColViewRecorded.SearchByTextKayouPop(TxtMainSearch.Text);
+
+            GridMain.ColumnDefinitions[1].Width = new GridLength(1000);
+            GridColumn1.Width = 1000;
+            GridMainRecorded.Width = 1000;
+        }
+
         private void BtnRecoredSearchKpopCore_Click(object sender, RoutedEventArgs e)
         {
             ColViewRecorded.ColViewListData.Filter = null;

@@ -61,7 +61,8 @@
             <Grid VerticalAlignment="Top" Grid.Row="1">
                 <WrapPanel Orientation="Vertical">
                     <Button Name="BtnRecoredSearchClear" Content="CLR" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchClear_Click" />
-                    <Button Name="BtnRecoredSearchKpopBank" Content="中心" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchKpopBank_Click" />
+                    <Button Name="BtnRecoredSearchKayouPop" Content="644" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchKayouPop_Click" />
+                    <Button Name="BtnRecoredSearchKpopBank" Content="MBank" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchKpopBank_Click" />
                     <Button Name="BtnRecoredSearchKpopCore" Content="中心" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchKpopCore_Click" />
                     <Button Name="BtnRecoredSearchSbs" Content="SBS" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchSbs_Click" />
                     <Button Name="BtnRecoredSearch女" Content="女" Height="30" Margin="3,3,3,3" Click="BtnRecoredSearchVenus_Click" />

@@ -34,6 +34,38 @@ namespace WpfTvContents.collection
 
         }
 
+        public void SearchByTextKayouPop(string mySearchText)
+        {
+            if (mySearchText.Trim().Length <= 0)
+                ColViewListData.Filter = null;
+
+            string[] SearchArray = mySearchText.Trim().Split(' ');
+
+            int year = 0;
+            string yearStr = "";
+            try
+            {
+                year = Convert.ToInt32(mySearchText);
+                yearStr = Convert.ToString(year);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            ColViewListData.Filter = delegate (object o)
+            {
+                RecordedData data = o as RecordedData;
+
+                if (data.ProgramName.IndexOf("レッツゴーヤング") >= 0)
+                    return true;
+
+                return false;
+            };
+            ColViewListData.SortDescriptions.Clear();
+            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Ascending));
+        }
+
         public void SearchByTextKpopBank(string mySearchText)
         {
             if (mySearchText.Trim().Length <= 0)
