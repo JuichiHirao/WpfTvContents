@@ -19,7 +19,7 @@ namespace WpfTvContents.common
             listPlayer = new List<PlayerInfo>();
 
             listPlayer.Add(new PlayerInfo("WMP", "wmplayer.exe"));
-            listPlayer.Add(new PlayerInfo("GOM", "GOM.exe"));
+            listPlayer.Add(new PlayerInfo("GOM", "GOM64.exe"));
         }
         public List<PlayerInfo> GetPlayers()
         {
@@ -30,6 +30,8 @@ namespace WpfTvContents.common
             string executePathname = "";
             string playerName = "GOM";
 
+            if (myData == null)
+                return;
             if (myData.Path.Length <= 0)
                 return;
 

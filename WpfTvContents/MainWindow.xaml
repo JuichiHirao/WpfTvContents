@@ -51,6 +51,7 @@
                 <RowDefinition Height="40" />
                 <RowDefinition />
                 <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid Grid.ColumnSpan="3">
                 <WrapPanel Margin="5,3,5,3">
@@ -85,13 +86,28 @@
                           Margin="5,3,3,5" Grid.Column="1" FontSize="24" SelectionChanged="OnChangedRating2" />
                 <TextBox Name="txtLargeComment" Margin="5,3,3,5" VerticalAlignment="Center" FontSize="24" Grid.Column="2" LostFocus="OnEditEndComment" />
             </Grid>
+            <Grid Name="lgridRecordedDetail" Grid.ColumnSpan="3" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <ComboBox Name="cmbLargeRating3"
+                          SelectedValue="{Binding Path=Rating3}" ItemsSource="{StaticResource ratingIntCollection}"
+                          Margin="5,3,3,5" FontSize="24" SelectionChanged="OnChangedRating3" />
+                <ComboBox Name="cmbLargeRating4"
+                          SelectedValue="{Binding Path=Rating4}" ItemsSource="{StaticResource ratingIntCollection}"
+                          Margin="5,3,3,5" Grid.Column="1" FontSize="24" SelectionChanged="OnChangedRating4" />
+                <TextBox Name="txtLargeRecordedComment" Margin="5,3,3,5" VerticalAlignment="Center" FontSize="24" Grid.Column="2" LostFocus="OnEditEndComment" />
+            </Grid>
             <Grid Grid.Column="1" Grid.Row="1">
                 <DataGrid HeadersVisibility="Row"  Name="GridMainRecorded" AutoGenerateColumns="False"
                           Height="Auto" Margin="5,1,5,5" Panel.ZIndex="1" Opacity="0.6"
                           HorizontalAlignment="Left" VerticalAlignment="Top" GridLinesVisibility="Horizontal"
                           CanUserAddRows="False" CanUserDeleteRows="False"
                           Grid.Row="1"
-                          SelectionChanged="GridMainContents_SelectionChanged" MouseDoubleClick="GridMainContents_MouseDoubleClick">
+                          SelectionChanged="GridMainRecorded_SelectionChanged" MouseDoubleClick="GridMainRecorded_MouseDoubleClick">
                     <!-- SelectionChanged="dgridMovieFilesItem_SelectionChanged" PreviewKeyDown="OnContentsDataGridKeyDown" 
                           MouseDoubleClick="dgridMovieFilesItem_MouseDoubleClick" ContextMenuOpening="dgridContentsItem_ContextMenuOpening" > -->
                     <DataGrid.Resources>

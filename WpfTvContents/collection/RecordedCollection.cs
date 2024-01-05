@@ -243,6 +243,25 @@ namespace WpfTvContents.collection
             ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Descending));
         }
 
+        public void SearchByText(string mySearchText)
+        {
+            ColViewListData.Filter = delegate (object o)
+            {
+
+                RecordedData data = o as RecordedData;
+
+                if (data.ProgramName.IndexOf(mySearchText) >= 0
+                    || data.Detail.IndexOf(mySearchText) >= 0)
+                {
+                    return true;
+                }
+
+                return false;
+            };
+            ColViewListData.SortDescriptions.Clear();
+            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Descending));
+        }
+
         public void SearchByTextSweetAngel(string mySearchText)
         {
             ColViewListData.Filter = delegate (object o)

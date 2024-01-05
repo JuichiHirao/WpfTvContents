@@ -12,6 +12,10 @@ namespace WpfTvContents.data
 
         public string DiskNo { get; set; }
 
+        public string DiskPath { get; set; }
+
+        public string DiskLabel { get; set; }
+
         public string SeqNo { get; set; }
 
         public string RipStatus { get; set; }
@@ -29,6 +33,12 @@ namespace WpfTvContents.data
         public string ProgramName { get; set; }
 
         public string Detail { get; set; }
+
+        public int Rating3 { get; set; }
+
+        public int Rating4 { get; set; }
+
+        public string Comment { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

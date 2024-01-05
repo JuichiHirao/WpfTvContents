@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Org.BouncyCastle.Utilities;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,15 +33,25 @@ namespace WpfTvContents
         private ContentsCollection ColViewContents;
 
         ContentsService service;
+        DiskService diskService;
+        RecordedService recordedService;
 
-        
+        List<DiskData> diskList;
+
+
         private ContentsData _DispInfoSelectGridMainContents = null;
+        private RecordedData _DispInfoSelectGridMainRecorded = null;
+
         private Player _Player = new Player();
 
         public MainWindow()
         {
             InitializeComponent();
             service = new ContentsService();
+            diskService = new DiskService();
+            recordedService = new RecordedService();
+
+            diskList = diskService.GetList(new MySqlDbConnection());
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -52,7 +65,8 @@ namespace WpfTvContents
 
         private void BtnMainSearch_Click(object sender, RoutedEventArgs e)
         {
-            ColViewContents.SearchByText(TxtMainSearch.Text);
+            //ColViewContents.SearchByText(TxtMainSearch.Text);
+            ColViewRecorded.SearchByText(TxtMainSearch.Text);
         }
 
         private void GridMainContents_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,6 +75,14 @@ namespace WpfTvContents
                 return;
 
             _DispInfoSelectGridMainContents = (ContentsData)GridMainContents.SelectedItem;
+
+            foreach (DiskData data in diskList)
+            {
+                if (data.Label == _DispInfoSelectGridMainContents.Label)
+                {
+
+                }
+            }
 
             if (String.IsNullOrEmpty(_DispInfoSelectGridMainContents.Path))
                 txtStatusBar.Text = "Pathなし";
@@ -119,7 +141,6 @@ namespace WpfTvContents
             service.UpdateRatingComment(_DispInfoSelectGridMainContents.Rating1, newRating2, _DispInfoSelectGridMainContents.Comment, _DispInfoSelectGridMainContents.Id, new MySqlDbConnection());
             _DispInfoSelectGridMainContents.Rating2 = newRating2;
         }
-
 
         private void OnEditEndComment(object sender, RoutedEventArgs e)
         {
@@ -207,6 +228,78 @@ namespace WpfTvContents
             GridMain.ColumnDefinitions[1].Width = new GridLength(1000);
             GridColumn1.Width = 1000;
             GridMainRecorded.Width = 1000;
+        }
+
+        private void GridMainRecorded_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GridMainRecorded.SelectedItem == null)
+                return;
+
+            _DispInfoSelectGridMainRecorded = (RecordedData)GridMainRecorded.SelectedItem;
+            txtStatusBar.Text = System.IO.Path.Combine(_DispInfoSelectGridMainRecorded.DiskPath, _DispInfoSelectGridMainRecorded.DiskLabel, _DispInfoSelectGridMainRecorded.SeqNo.PadLeft(5, '0') + ".m2ts");
+
+            cmbLargeRating3.SelectedItem = _DispInfoSelectGridMainRecorded.Rating3;
+            cmbLargeRating4.SelectedItem = _DispInfoSelectGridMainRecorded.Rating4;
+            txtLargeRecordedComment.Text = _DispInfoSelectGridMainRecorded.Comment;
+
+        }
+
+        private void GridMainRecorded_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            _DispInfoSelectGridMainRecorded = (RecordedData)GridMainRecorded.SelectedItem;
+
+            // K:\BDR-Backup\274F_RE004\BDAV\STREAM\0001.m2ts
+            string path = "BDAV\\STREAM";
+
+            bool isFile = false;
+            string contentsPathname = "";
+
+            // var targets = from player in listPlayer
+            //               where player.Name.ToUpper() == playerName.ToUpper()
+            // select player;
+
+            string diskPath = System.IO.Path.Combine(_DispInfoSelectGridMainRecorded.DiskPath, _DispInfoSelectGridMainRecorded.DiskLabel);
+            contentsPathname = System.IO.Path.Combine(diskPath, path, _DispInfoSelectGridMainRecorded.SeqNo.PadLeft(5, '0') + ".m2ts");
+
+            isFile = System.IO.File.Exists(contentsPathname);
+
+            if (isFile)
+            {
+                txtStatusBar.Text = contentsPathname;
+                try
+                {
+                    Process.Start("GOM64", contentsPathname);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                txtStatusBar.Text = "not found " + contentsPathname + " " + _DispInfoSelectGridMainRecorded.DiskNo;
+            }
+        }
+
+        private void OnChangedRating3(object sender, SelectionChangedEventArgs e)
+        {
+            int newRating3 = GetComboboxRating(_DispInfoSelectGridMainRecorded.Rating3, sender);
+
+            if (newRating3 < 0)
+                return;
+
+            recordedService.UpdateRatingComment(newRating3, _DispInfoSelectGridMainRecorded.Rating3, _DispInfoSelectGridMainRecorded.Comment, _DispInfoSelectGridMainRecorded.Id, new MySqlDbConnection());
+            _DispInfoSelectGridMainRecorded.Rating3 = newRating3;
+        }
+        private void OnChangedRating4(object sender, SelectionChangedEventArgs e)
+        {
+            int newRating4 = GetComboboxRating(_DispInfoSelectGridMainRecorded.Rating4, sender);
+
+            if (newRating4 < 0)
+                return;
+
+            recordedService.UpdateRatingComment(newRating4, _DispInfoSelectGridMainRecorded.Rating3, _DispInfoSelectGridMainRecorded.Comment, _DispInfoSelectGridMainRecorded.Id, new MySqlDbConnection());
+            _DispInfoSelectGridMainRecorded.Rating4 = newRating4;
         }
     }
 }
