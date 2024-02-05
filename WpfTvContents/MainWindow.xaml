@@ -99,7 +99,7 @@
                 <ComboBox Name="cmbLargeRating4"
                           SelectedValue="{Binding Path=Rating4}" ItemsSource="{StaticResource ratingIntCollection}"
                           Margin="5,3,3,5" Grid.Column="1" FontSize="24" SelectionChanged="OnChangedRating4" />
-                <TextBox Name="txtLargeRecordedComment" Margin="5,3,3,5" VerticalAlignment="Center" FontSize="24" Grid.Column="2" LostFocus="OnEditEndComment" />
+                <TextBox Name="txtLargeRecordedComment" Margin="5,3,3,5" VerticalAlignment="Center" FontSize="24" Grid.Column="2" LostFocus="OnEditEndRecordedComment" />
             </Grid>
             <Grid Grid.Column="1" Grid.Row="1">
                 <DataGrid HeadersVisibility="Row"  Name="GridMainRecorded" AutoGenerateColumns="False"

@@ -23,7 +23,7 @@ namespace WpfTvContents.service
                         = "SELECT r.id "
                         + "    , r.disk_no, r.seq_no, r.rip_status, r.on_air_date "
                         + "    , r.time_flag, r.minute, r.channel_no, r.channel_seq "
-                        + "    , p.name, r.detail, r.created_at, r.updated_at, d.path, d.label, r.rating1, r.rating2 "
+                        + "    , p.name, r.detail, r.created_at, r.updated_at, d.path, d.label, r.rating1, r.rating2, r.remark "
                         + "  FROM tv.recorded as r"
                         + "    LEFT JOIN tv.program as p "
                         + "      ON r.channel_no = p.channel_no and r.channel_seq = p.channel_seq "
@@ -68,6 +68,7 @@ namespace WpfTvContents.service
                         data.DiskLabel = MySqlDbExportCommon.GetDbString(reader, colIdx++);
                         data.Rating3 = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
                         data.Rating4 = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.Comment = MySqlDbExportCommon.GetDbString(reader, colIdx++);
 
                         listData.Add(data);
                     }

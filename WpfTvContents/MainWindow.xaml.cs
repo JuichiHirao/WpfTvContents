@@ -151,6 +151,16 @@ namespace WpfTvContents
             _DispInfoSelectGridMainContents.Comment = txtLargeComment.Text;
         }
 
+        private void OnEditEndRecordedComment(object sender, RoutedEventArgs e)
+        {
+            string recordedComment = txtLargeRecordedComment.Text;
+            if (_DispInfoSelectGridMainRecorded.Comment != null && _DispInfoSelectGridMainRecorded.Comment.Equals(recordedComment))
+                return;
+
+            recordedService.UpdateRatingComment(_DispInfoSelectGridMainRecorded.Rating3, _DispInfoSelectGridMainRecorded.Rating4, recordedComment, _DispInfoSelectGridMainRecorded.Id, new MySqlDbConnection());
+            _DispInfoSelectGridMainRecorded.Comment = recordedComment;
+        }
+
         private void BtnRecoredSearchKpopBank_Click(object sender, RoutedEventArgs e)
         {
             ColViewRecorded.ColViewListData.Filter = null;
@@ -288,7 +298,7 @@ namespace WpfTvContents
             if (newRating3 < 0)
                 return;
 
-            recordedService.UpdateRatingComment(newRating3, _DispInfoSelectGridMainRecorded.Rating3, _DispInfoSelectGridMainRecorded.Comment, _DispInfoSelectGridMainRecorded.Id, new MySqlDbConnection());
+            recordedService.UpdateRatingComment(newRating3, _DispInfoSelectGridMainRecorded.Rating4, _DispInfoSelectGridMainRecorded.Comment, _DispInfoSelectGridMainRecorded.Id, new MySqlDbConnection());
             _DispInfoSelectGridMainRecorded.Rating3 = newRating3;
         }
         private void OnChangedRating4(object sender, SelectionChangedEventArgs e)
@@ -298,7 +308,7 @@ namespace WpfTvContents
             if (newRating4 < 0)
                 return;
 
-            recordedService.UpdateRatingComment(newRating4, _DispInfoSelectGridMainRecorded.Rating3, _DispInfoSelectGridMainRecorded.Comment, _DispInfoSelectGridMainRecorded.Id, new MySqlDbConnection());
+            recordedService.UpdateRatingComment(_DispInfoSelectGridMainRecorded.Rating3, newRating4, _DispInfoSelectGridMainRecorded.Comment, _DispInfoSelectGridMainRecorded.Id, new MySqlDbConnection());
             _DispInfoSelectGridMainRecorded.Rating4 = newRating4;
         }
     }
