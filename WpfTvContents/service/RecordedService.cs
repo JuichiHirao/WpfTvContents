@@ -29,7 +29,7 @@ namespace WpfTvContents.service
                         + "      ON r.channel_no = p.channel_no and r.channel_seq = p.channel_seq "
                         + "    LEFT JOIN tv.disk as d "
                         + "      ON r.disk_no = d.no "
-                        + "  ORDER BY r.disk_no DESC "
+                        + "  ORDER BY r.disk_no DESC"
                         + "";
 
             MySqlDataReader reader = null;

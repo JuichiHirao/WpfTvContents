@@ -181,6 +181,26 @@ namespace WpfTvContents
             GridMainRecorded.Width = 1000;
         }
 
+        private void BtnRecoredSearchToei218_Click(object sender, RoutedEventArgs e)
+        {
+            ColViewRecorded.ColViewListData.Filter = null;
+            ColViewRecorded.SearchByTextToei218Pop(TxtMainSearch.Text);
+
+            GridMain.ColumnDefinitions[1].Width = new GridLength(1000);
+            GridColumn1.Width = 1000;
+            GridMainRecorded.Width = 1000;
+        }
+
+        private void BtnRecoredSearchPigoo663_Click(object sender, RoutedEventArgs e)
+        {
+            ColViewRecorded.ColViewListData.Filter = null;
+            ColViewRecorded.SearchByTextPigoo663Pop(TxtMainSearch.Text);
+
+            GridMain.ColumnDefinitions[1].Width = new GridLength(1000);
+            GridColumn1.Width = 1000;
+            GridMainRecorded.Width = 1000;
+        }
+
         private void BtnRecoredSearchKpopCore_Click(object sender, RoutedEventArgs e)
         {
             ColViewRecorded.ColViewListData.Filter = null;

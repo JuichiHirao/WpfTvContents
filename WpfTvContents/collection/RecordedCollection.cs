@@ -34,6 +34,82 @@ namespace WpfTvContents.collection
 
         }
 
+        public void SearchByTextPigoo663Pop(string mySearchText)
+        {
+            if (mySearchText.Trim().Length <= 0)
+                ColViewListData.Filter = null;
+
+            string[] SearchArray = mySearchText.Trim().Split(' ');
+
+            int year = 0;
+            string yearStr = "";
+            try
+            {
+                year = Convert.ToInt32(mySearchText);
+                yearStr = Convert.ToString(year);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            ColViewListData.Filter = delegate (object o)
+            {
+                RecordedData data = o as RecordedData;
+
+                if (data.ChannelNo == 663)
+                    if (mySearchText.Trim().Length > 0)
+                    {
+                        if (data.Detail.IndexOf(mySearchText) >= 0)
+                            return true;
+                    }
+                    else
+                        return true;
+
+                return false;
+            };
+            ColViewListData.SortDescriptions.Clear();
+            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Ascending));
+        }
+
+        public void SearchByTextToei218Pop(string mySearchText)
+        {
+            if (mySearchText.Trim().Length <= 0)
+                ColViewListData.Filter = null;
+
+            string[] SearchArray = mySearchText.Trim().Split(' ');
+
+            int year = 0;
+            string yearStr = "";
+            try
+            {
+                year = Convert.ToInt32(mySearchText);
+                yearStr = Convert.ToString(year);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            ColViewListData.Filter = delegate (object o)
+            {
+                RecordedData data = o as RecordedData;
+
+                if (data.ChannelNo == 218)
+                    if (mySearchText.Trim().Length > 0)
+                    {
+                        if (data.Detail.IndexOf(mySearchText) >= 0)
+                            return true;
+                    }
+                    else
+                            return true;
+
+                return false;
+            };
+            ColViewListData.SortDescriptions.Clear();
+            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Ascending));
+        }
+
         public void SearchByTextKayouPop(string mySearchText)
         {
             if (mySearchText.Trim().Length <= 0)
