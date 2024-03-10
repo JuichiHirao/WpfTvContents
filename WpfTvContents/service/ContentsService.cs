@@ -32,7 +32,7 @@ namespace WpfTvContents.service
                         + "    , f.created_at, f.updated_at, d.path "
                         + "  FROM tv.file as f LEFT JOIN tv.real_dir as d "
                         + "    ON f.store_id = d.id  "
-                        + "  ORDER BY f.file_date DESC "
+                        + "  ORDER BY f.created_at DESC "
                         + "";
 
             MySqlDataReader reader = null;

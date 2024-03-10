@@ -65,7 +65,7 @@ namespace WpfTvContents
 
         private void BtnMainSearch_Click(object sender, RoutedEventArgs e)
         {
-            //ColViewContents.SearchByText(TxtMainSearch.Text);
+            ColViewContents.SearchByText(TxtMainSearch.Text);
             ColViewRecorded.SearchByText(TxtMainSearch.Text);
         }
 
