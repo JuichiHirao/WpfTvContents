@@ -298,7 +298,7 @@ namespace WpfTvContents
                 txtStatusBar.Text = contentsPathname;
                 try
                 {
-                    Process.Start("GOM64", contentsPathname);
+                    Process.Start("GOM64", "\"" + @contentsPathname + "\"");
                 }
                 catch (Exception ex)
                 {
