@@ -323,6 +323,10 @@ namespace WpfTvContents
         }
         private void OnChangedRating4(object sender, SelectionChangedEventArgs e)
         {
+            if (_DispInfoSelectGridMainRecorded == null)
+                stsbaritemDispDetail.Content = "Recordedが未選択";
+                return;
+
             int newRating4 = GetComboboxRating(_DispInfoSelectGridMainRecorded.Rating4, sender);
 
             if (newRating4 < 0)
