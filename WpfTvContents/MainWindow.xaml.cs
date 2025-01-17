@@ -266,6 +266,9 @@ namespace WpfTvContents
                 return;
 
             _DispInfoSelectGridMainRecorded = (RecordedData)GridMainRecorded.SelectedItem;
+
+            _DispInfoSelectGridMainRecorded.SeqNo = recordedService.Get4kCalcDiskSeqNo(_DispInfoSelectGridMainRecorded.DiskNo, _DispInfoSelectGridMainRecorded.SeqNo, null);
+
             txtStatusBar.Text = System.IO.Path.Combine(_DispInfoSelectGridMainRecorded.DiskPath, _DispInfoSelectGridMainRecorded.DiskLabel, _DispInfoSelectGridMainRecorded.SeqNo.PadLeft(5, '0') + ".m2ts");
 
             cmbLargeRating3.SelectedItem = _DispInfoSelectGridMainRecorded.Rating3;
@@ -324,8 +327,10 @@ namespace WpfTvContents
         private void OnChangedRating4(object sender, SelectionChangedEventArgs e)
         {
             if (_DispInfoSelectGridMainRecorded == null)
+            {
                 stsbaritemDispDetail.Content = "Recordedが未選択";
                 return;
+            }
 
             int newRating4 = GetComboboxRating(_DispInfoSelectGridMainRecorded.Rating4, sender);
 

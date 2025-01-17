@@ -69,7 +69,7 @@ namespace WpfTvContents.collection
                 return false;
             };
             ColViewListData.SortDescriptions.Clear();
-            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Ascending));
+            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Descending));
         }
 
         public void SearchByTextToei218Pop(string mySearchText)
@@ -95,7 +95,7 @@ namespace WpfTvContents.collection
             {
                 RecordedData data = o as RecordedData;
 
-                if (data.ChannelNo == 218)
+                if (data.ChannelNo == 218 || data.ChannelNo == 635 || data.ChannelNo == 636 || data.ChannelNo == 618)
                     if (mySearchText.Trim().Length > 0)
                     {
                         if (data.Detail.IndexOf(mySearchText) >= 0)
@@ -107,7 +107,7 @@ namespace WpfTvContents.collection
                 return false;
             };
             ColViewListData.SortDescriptions.Clear();
-            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Ascending));
+            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Descending));
         }
 
         public void SearchByTextKayouPop(string mySearchText)

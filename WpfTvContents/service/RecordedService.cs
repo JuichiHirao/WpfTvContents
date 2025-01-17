@@ -89,6 +89,65 @@ namespace WpfTvContents.service
 
             return listData;
         }
+
+        public string Get4kCalcDiskSeqNo(string myDiskNo, string myDiskSeqNo, MySqlDbConnection myDbCon)
+        {
+            List<RecordedData> listData = new List<RecordedData>();
+
+            if (myDbCon == null)
+                myDbCon = new MySqlDbConnection();
+
+            string queryString
+                        = "SELECT COUNT(id) "
+                        + "  FROM tv.recorded"
+                        + "  WHERE disk_no = @pDiskNo "
+                        + "    AND seq_no < @pSeqNo "
+                        + "    AND channel_no > 4000 "
+                        + "  ORDER BY seq_no"
+                        + "";
+
+            MySqlDataReader reader = null;
+            int seqNo = 0;
+            try
+            {
+                List<MySqlParameter> sqlparamList = new List<MySqlParameter>();
+
+                MySqlParameter param = new MySqlParameter();
+                param = new MySqlParameter("@pDiskNo", MySqlDbType.Int32);
+                param.Value = myDiskNo;
+                sqlparamList.Add(param);
+
+                myDbCon.SetParameter(sqlparamList.ToArray());
+
+                param = new MySqlParameter();
+                param = new MySqlParameter("@pSeqNo", MySqlDbType.Int32);
+                param.Value = myDiskNo;
+                sqlparamList.Add(param);
+
+                myDbCon.SetParameter(sqlparamList.ToArray());
+
+                int fourKCount = myDbCon.getCountSql(queryString);
+
+                if (fourKCount > 0)
+                    seqNo = Convert.ToInt16(myDiskSeqNo) - fourKCount;
+                else
+                    seqNo = Convert.ToInt16(myDiskSeqNo);
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+
+            myDbCon.closeConnection();
+
+            return Convert.ToString(seqNo);
+        }
+
         public void UpdateRatingComment(int myRating1, int myRating2, string myComment, int myId, MySqlDbConnection myDbCon)
         {
             if (myDbCon == null)
