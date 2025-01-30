@@ -113,15 +113,15 @@ namespace WpfTvContents.service
                 List<MySqlParameter> sqlparamList = new List<MySqlParameter>();
 
                 MySqlParameter param = new MySqlParameter();
-                param = new MySqlParameter("@pDiskNo", MySqlDbType.Int32);
+                param = new MySqlParameter("@pDiskNo", MySqlDbType.VarChar);
                 param.Value = myDiskNo;
                 sqlparamList.Add(param);
 
                 myDbCon.SetParameter(sqlparamList.ToArray());
 
                 param = new MySqlParameter();
-                param = new MySqlParameter("@pSeqNo", MySqlDbType.Int32);
-                param.Value = myDiskNo;
+                param = new MySqlParameter("@pSeqNo", MySqlDbType.VarChar);
+                param.Value = myDiskSeqNo;
                 sqlparamList.Add(param);
 
                 myDbCon.SetParameter(sqlparamList.ToArray());
