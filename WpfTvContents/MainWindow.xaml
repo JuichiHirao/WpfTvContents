@@ -140,8 +140,8 @@
                                             <ColumnDefinition MaxWidth="740" />
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Name="MainColOnAirDate" Text="{Binding Path=OnAirDate, StringFormat='yyyy/MM/dd'}" HorizontalAlignment="Center" FontSize="24" />
-                                        <TextBlock Name="MainColChannelNo" Text="{Binding Path=ChannelNo}" TextAlignment="Left" FontSize="18" Grid.Column="1" />
-                                        <TextBlock Name="MainColChannelSeq" Text="{Binding Path=ChannelSeq}" TextAlignment="Left" FontSize="18" Grid.Column="2" />
+                                        <TextBlock Name="MainColDiskInfo" Text="{Binding Path=DiskInfo}" TextAlignment="Left" FontSize="18" Grid.Column="1" />
+                                        <TextBlock Name="MainColChannelInfo" Text="{Binding Path=ChannelInfo}" TextAlignment="Left" FontSize="18" Grid.Column="2" />
                                         <TextBlock Name="MainColProgramName" Text="{Binding Path=ProgramName}" TextWrapping="NoWrap"  TextAlignment="Left" FontSize="18" Grid.ColumnSpan="2" Grid.Column="3" />
                                         <TextBlock Name="MainColRipStatus" Text="{Binding Path=RipStatus}" TextAlignment="Left" FontSize="14" Grid.Row="1" />
                                         <TextBlock Name="MainColDetail" Text="{Binding Path=Detail}" TextWrapping="Wrap" TextAlignment="Left" MaxWidth="980" FontSize="18" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" />

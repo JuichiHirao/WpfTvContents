@@ -54,12 +54,14 @@ namespace WpfTvContents.service
                         data.Id = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
                         data.DiskNo = MySqlDbExportCommon.GetDbString(reader, colIdx++);
                         data.SeqNo = MySqlDbExportCommon.GetDbString(reader, colIdx++);
+                        data.DiskInfo = Convert.ToString(data.DiskNo) + "-" + Convert.ToString(data.SeqNo);
                         data.RipStatus = MySqlDbExportCommon.GetDbString(reader, colIdx++);
                         data.OnAirDate = MySqlDbExportCommon.GetDbDateTime(reader, colIdx++);
                         data.TimeFlag = MySqlDbExportCommon.GetDbBool(reader, colIdx++);
                         data.Minute = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
                         data.ChannelNo = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
                         data.ChannelSeq = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
+                        data.ChannelInfo = Convert.ToString(data.ChannelNo) + "-" + Convert.ToString(data.ChannelSeq);
                         data.ProgramName = MySqlDbExportCommon.GetDbString(reader, colIdx++);
                         data.Detail = MySqlDbExportCommon.GetDbString(reader, colIdx++);
                         data.CreatedAt = MySqlDbExportCommon.GetDbDateTime(reader, colIdx++);

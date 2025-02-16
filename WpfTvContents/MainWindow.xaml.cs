@@ -266,8 +266,10 @@ namespace WpfTvContents
                 return;
 
             _DispInfoSelectGridMainRecorded = (RecordedData)GridMainRecorded.SelectedItem;
+            string diskNo = _DispInfoSelectGridMainRecorded.DiskNo;
+            string seqNo = _DispInfoSelectGridMainRecorded.SeqNo;
 
-            _DispInfoSelectGridMainRecorded.SeqNo = recordedService.Get4kCalcDiskSeqNo(_DispInfoSelectGridMainRecorded.DiskNo, _DispInfoSelectGridMainRecorded.SeqNo, null);
+            _DispInfoSelectGridMainRecorded.SeqNo = recordedService.Get4kCalcDiskSeqNo(diskNo, seqNo, null);
 
             txtStatusBar.Text = System.IO.Path.Combine(_DispInfoSelectGridMainRecorded.DiskPath, _DispInfoSelectGridMainRecorded.DiskLabel, _DispInfoSelectGridMainRecorded.SeqNo.PadLeft(5, '0') + ".m2ts");
 

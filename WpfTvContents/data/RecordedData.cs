@@ -18,6 +18,8 @@ namespace WpfTvContents.data
 
         public string SeqNo { get; set; }
 
+        public string DiskInfo { get; set; }
+
         public string RipStatus { get; set; }
 
         public DateTime OnAirDate { get; set; }
@@ -29,6 +31,8 @@ namespace WpfTvContents.data
         public int ChannelNo {get; set; }
 
         public int ChannelSeq { get; set; }
+
+        public string ChannelInfo { get; set; }
 
         public string ProgramName { get; set; }
 
