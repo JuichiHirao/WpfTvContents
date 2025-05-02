@@ -135,13 +135,14 @@
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition MaxWidth="140" Width="140" />
-                                            <ColumnDefinition MaxWidth="50" Width="50" />
-                                            <ColumnDefinition MaxWidth="50" Width="50" />
-                                            <ColumnDefinition MaxWidth="740" />
+                                            <ColumnDefinition MaxWidth="70" Width="70" />
+                                            <ColumnDefinition MaxWidth="70" Width="70" />
+                                            <ColumnDefinition MaxWidth="700" />
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Name="MainColOnAirDate" Text="{Binding Path=OnAirDate, StringFormat='yyyy/MM/dd'}" HorizontalAlignment="Center" FontSize="24" />
-                                        <TextBlock Name="MainColDiskInfo" Text="{Binding Path=DiskInfo}" TextAlignment="Left" FontSize="18" Grid.Column="1" />
-                                        <TextBlock Name="MainColChannelInfo" Text="{Binding Path=ChannelInfo}" TextAlignment="Left" FontSize="18" Grid.Column="2" />
+                                        <TextBlock Name="MainColRating4" Text="{Binding Path=Rating4}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="24" Grid.Row="1" />
+                                        <TextBlock Name="MainColDiskInfo" Text="{Binding Path=DiskInfo}" Margin="0,0,5,0" TextAlignment="Left" FontSize="14" Grid.Column="1" />
+                                        <TextBlock Name="MainColChannelInfo" Text="{Binding Path=ChannelInfo}" TextAlignment="Left" FontSize="14" Grid.Column="2" />
                                         <TextBlock Name="MainColProgramName" Text="{Binding Path=ProgramName}" TextWrapping="NoWrap"  TextAlignment="Left" FontSize="18" Grid.ColumnSpan="2" Grid.Column="3" />
                                         <TextBlock Name="MainColRipStatus" Text="{Binding Path=RipStatus}" TextAlignment="Left" FontSize="14" Grid.Row="1" />
                                         <TextBlock Name="MainColDetail" Text="{Binding Path=Detail}" TextWrapping="Wrap" TextAlignment="Left" MaxWidth="980" FontSize="18" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" />

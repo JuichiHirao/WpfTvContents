@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,8 @@ namespace WpfTvContents.collection
 {
     class RecordedCollection
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         public List<RecordedData> dataList;
         public ICollectionView ColViewListData;
 
@@ -20,12 +24,20 @@ namespace WpfTvContents.collection
 
         public RecordedCollection()
         {
+            _logger.Debug("START");
+            Debug.Print("START" + DateTime.Now);
             service = new RecordedService();
             DataSet();
+            _logger.Debug("DataSet完了");
+            Debug.Print("DataSet完了" + DateTime.Now);
             ColViewListData = CollectionViewSource.GetDefaultView(dataList);
+            _logger.Debug("DefaultView完了");
+            Debug.Print("DefaultView完了" + DateTime.Now);
 
             ColViewListData.SortDescriptions.Clear();
-            ColViewListData.SortDescriptions.Add(new SortDescription("OnAirDate", ListSortDirection.Descending));
+            ColViewListData.SortDescriptions.Add(new SortDescription("DiskInfo", ListSortDirection.Descending));
+            _logger.Debug("Sort完了");
+            Debug.Print("Sort完了" + DateTime.Now);
         }
 
         public void DataSet()

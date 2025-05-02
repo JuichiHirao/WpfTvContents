@@ -271,6 +271,9 @@ namespace WpfTvContents
 
             _DispInfoSelectGridMainRecorded.SeqNo = recordedService.Get4kCalcDiskSeqNo(diskNo, seqNo, null);
 
+            if (_DispInfoSelectGridMainRecorded.SeqNo == "0")
+                _DispInfoSelectGridMainRecorded.SeqNo = seqNo;
+
             txtStatusBar.Text = System.IO.Path.Combine(_DispInfoSelectGridMainRecorded.DiskPath, _DispInfoSelectGridMainRecorded.DiskLabel, _DispInfoSelectGridMainRecorded.SeqNo.PadLeft(5, '0') + ".m2ts");
 
             cmbLargeRating3.SelectedItem = _DispInfoSelectGridMainRecorded.Rating3;

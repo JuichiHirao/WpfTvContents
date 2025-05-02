@@ -29,7 +29,7 @@ namespace WpfTvContents.service
                         + "      ON r.channel_no = p.channel_no and r.channel_seq = p.channel_seq "
                         + "    LEFT JOIN tv.disk as d "
                         + "      ON r.disk_no = d.no "
-                        + "  ORDER BY r.disk_no DESC"
+                        + "  ORDER BY r.disk_no DESC, r.seq_no DESC"
                         + "";
 
             MySqlDataReader reader = null;
@@ -54,7 +54,8 @@ namespace WpfTvContents.service
                         data.Id = MySqlDbExportCommon.GetDbInt(reader, colIdx++);
                         data.DiskNo = MySqlDbExportCommon.GetDbString(reader, colIdx++);
                         data.SeqNo = MySqlDbExportCommon.GetDbString(reader, colIdx++);
-                        data.DiskInfo = Convert.ToString(data.DiskNo) + "-" + Convert.ToString(data.SeqNo);
+                        // data.DiskInfo = Convert.ToString(data.DiskNo) + "-" + string.Format("{0:00}", data.SeqNo);
+                        data.DiskInfo = data.DiskNo.PadLeft(4, '0') + "-" + data.SeqNo.PadLeft(2, '0');
                         data.RipStatus = MySqlDbExportCommon.GetDbString(reader, colIdx++);
                         data.OnAirDate = MySqlDbExportCommon.GetDbDateTime(reader, colIdx++);
                         data.TimeFlag = MySqlDbExportCommon.GetDbBool(reader, colIdx++);
